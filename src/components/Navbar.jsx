@@ -1,42 +1,125 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Button,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 
 import siieLogo from "../img/SIIE.png";
-import "./Navbar.css";
+
+const NavButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.common.black,
+  fontWeight: 700,
+  minWidth: "auto",
+  padding: "6px 7px",
+  "&.active": {
+    color: "#88CFE0",
+    fontWeight: "bold",
+    position: "relative",
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      bottom: -5,
+      left: 0,
+      width: "100%",
+      height: 2,
+      backgroundColor: "#88CFE0",
+      animation: "underline 0.3s ease",
+    },
+  },
+  "@keyframes underline": {
+    from: { width: 0 },
+    to: { width: "100%" },
+  },
+}));
 
 const Navbar = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
-    <nav className="navbar">
-      <ul className="navbar-menu left">
-        <li>
-          <NavLink to="/" className="nav-link" activeClassName="active">
-            INICIO
-          </NavLink>
-        </li>
-      </ul>
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "white",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        py: 1,
+      }}
+    >
+      <Toolbar
+        sx={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "95%",
+        }}
+      >
+        {/* Contenedor izquierdo (solo desktop) */}
+        {!isMobile && (
+          <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-start" }}>
+            <NavButton component={NavLink} to="/">
+              INICIO
+            </NavButton>
+          </Box>
+        )}
 
-      <div className="navbar-logo">
-        <img src={siieLogo} alt="SIIE Logo" />
-      </div>
+        {/* Logo - siempre centrado */}
+        <Box
+          sx={{
 
-      <ul className="navbar-menu right">
-        <li>
-            <NavLink  to="/SEDUC" className="nav-link"activeClassName="active" >
+            mx: isMobile ? 0 : 4,
+            my: isMobile ? 1 : 0,
+            flexShrink: 0,
+          }}
+        >
+          <img src={siieLogo} alt="SIIE Logo" style={{ height: "130px" }} />
+        </Box>
+
+        {/* Contenedor derecho (menu principal) */}
+        <Box
+          sx={{
+            display: "flex",
+            flex: isMobile ? "none" : 1,
+            justifyContent: isMobile ? "center" : "flex-end",
+            flexWrap: "wrap",
+            gap: 1,
+            "& .MuiButton-root:not(:last-child)::after": isMobile
+              ? {
+                  //content: '"|"',
+                  //ml: 1.5,
+                  color: "#ccc",
+                }
+              : {},
+          }}
+        >
+          {/* Mostrar INICIO en móvil si es necesario */}
+          {isMobile && (
+            <NavButton
+              component={NavLink}
+              to="/"
+              sx={{ "&.active::after": { display: "none" } }}
+            >
+              INICIO
+            </NavButton>
+          )}
+          <NavButton component={NavLink} to="/SEDUC">
             SEDUC
-          </NavLink>
-        </li>
-        <li>
-            <NavLink  to="/INFOP" className="nav-link" activeClassName="active" >
+          </NavButton>
+          <NavButton component={NavLink} to="/INFOP">
             INFOP
-          </NavLink>
-        </li>
-        <li>
-            <NavLink  to="/CONEANFO" className="nav-link" activeClassName="active" >
+          </NavButton>
+          <NavButton component={NavLink} to="/CONEANFO">
             CONEANFO
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+          </NavButton>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 
