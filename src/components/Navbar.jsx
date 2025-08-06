@@ -10,7 +10,8 @@ import {
   useTheme,
 } from "@mui/material";
 
-import siieLogo from "../img/SIIE.png";
+import siieLogo from "../img/Logos.png";
+//import conedLogo from "../img/logos-CONED.png";
 
 const NavButton = styled(Button)(({ theme }) => ({
   color: theme.palette.common.black,
@@ -72,13 +73,13 @@ const Navbar = () => {
         {/* Logo - siempre centrado */}
         <Box
           sx={{
-
             mx: isMobile ? 0 : 4,
             my: isMobile ? 1 : 0,
             flexShrink: 0,
           }}
         >
-          <img src={siieLogo} alt="SIIE Logo" style={{ height: "130px" }} />
+          <img src={siieLogo} alt="SIIE Logo" style={{ height: "140px" }} />
+{/*           <img src={conedLogo} alt="CONED Logo" style={{ height: "180px" }} /> */}
         </Box>
 
         {/* Contenedor derecho (menu principal) */}
