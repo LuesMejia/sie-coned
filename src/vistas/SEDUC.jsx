@@ -7,7 +7,7 @@ const PowerBIView = () => {
       <iframe
         title="SIIE"
         width="110%"
-        height="820"
+        height="820px"
         src="https://app.powerbi.com/view?r=eyJrIjoiMjNhMDQ2MzAtMGRlOS00MDllLWExMTktNGM5Yjk4ZDBjMjBhIiwidCI6IjI5MjY3MDJhLWZhZTctNDY5Yi04OWVmLTQwOGY2ZTJkMzliNiJ9&pageName=6c97aac860a3c262c965"
         frameborder="0"
         allowFullScreen="true"
