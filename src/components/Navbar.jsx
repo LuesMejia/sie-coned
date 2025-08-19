@@ -78,8 +78,15 @@ const Navbar = () => {
             flexShrink: 0,
           }}
         >
-          <img src={siieLogo} alt="SIIE Logo" style={{ height: "140px" }} />
-{/*           <img src={conedLogo} alt="CONED Logo" style={{ height: "180px" }} /> */}
+          <img
+            src={siieLogo}
+            alt="SIIE Logo"
+            style={{
+              height:isMobile ?"": "140px",
+              width: isMobile ? "90%" : "",
+            }}
+          />
+          {/*           <img src={conedLogo} alt="CONED Logo" style={{ height: "180px" }} /> */}
         </Box>
 
         {/* Contenedor derecho (menu principal) */}
