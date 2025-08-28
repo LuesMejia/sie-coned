@@ -67,6 +67,9 @@ const Navbar = () => {
             <NavButton component={NavLink} to="/">
               INICIO
             </NavButton>
+            <NavButton component={NavLink} to="/ACERCA-DE">
+              ACERCA DE
+            </NavButton>
           </Box>
         )}
 
@@ -82,7 +85,7 @@ const Navbar = () => {
             src={siieLogo}
             alt="SIIE Logo"
             style={{
-              height:isMobile ?"": "140px",
+              height: isMobile ? "" : "140px",
               width: isMobile ? "90%" : "",
             }}
           />
@@ -99,22 +102,31 @@ const Navbar = () => {
             gap: 1,
             "& .MuiButton-root:not(:last-child)::after": isMobile
               ? {
-                  //content: '"|"',
-                  //ml: 1.5,
-                  color: "#ccc",
-                }
+                //content: '"|"',
+                //ml: 1.5,
+                color: "#ccc",
+              }
               : {},
           }}
         >
           {/* Mostrar INICIO en móvil si es necesario */}
           {isMobile && (
-            <NavButton
-              component={NavLink}
-              to="/"
-              sx={{ "&.active::after": { display: "none" } }}
-            >
-              INICIO
-            </NavButton>
+            <>
+              <NavButton
+                component={NavLink}
+                to="/"
+                sx={{ "&.active::after": { display: "none" } }}
+              >
+                INICIO
+              </NavButton>
+              <NavButton
+                component={NavLink}
+                to="/ACERCA-DE"
+                sx={{ "&.active::after": { display: "none" } }}
+              >
+                ACERCA DE
+              </NavButton>
+            </>
           )}
           <NavButton component={NavLink} to="/SEDUC">
             SEDUC

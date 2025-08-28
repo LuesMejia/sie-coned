@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import INFOPTABLERO from "./vistas/INFOP";
 import SEDUC from "./vistas/SEDUC";
+import AcercaDe from "./vistas/AcercaDe";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       {/*<Header />*/}
       <Routes>
+        <Route path="/ACERCA-DE" element={<AcercaDe />} />
         <Route path="/SEDUC" element={<SEDUC />} />
         <Route path="/INFOP" element={<INFOPTABLERO />} />
       </Routes>
