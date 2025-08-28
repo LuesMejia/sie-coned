@@ -8,21 +8,31 @@ import {
     CardMedia,
     Divider,
     Box,
-    Paper
+    Paper,
+    Link
 } from "@mui/material";
 import { motion } from "framer-motion";
+import { useTheme, useMediaQuery } from "@mui/material";
+
 import conedLogo from "../img/logos-CONED.png";
 import siieLogo from "../img/SIIE.png";
 import colaboradoresLogo from "../img/Colaboradores.png";
 import seducLogo from "../img/SEDUC.png";
 import coneanfoLogo from "../img/CONEANFO.png";
-import infopLogo from "../img/INFOP.png"
-import { ListAlt, Info, PieChart, Computer, Search, Storage } from '@mui/icons-material';
-
+import infopLogo from "../img/INFOP.png";
+import {
+    ListAlt,
+    Info,
+    PieChart,
+    Computer,
+    Search,
+    Storage,
+} from "@mui/icons-material";
 
 export default function AcercaDe() {
     const [hovered, setHovered] = useState(null);
-
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const instituciones = [
         { name: "SEDUC", logo: seducLogo },
         { name: "INFOP", logo: infopLogo },
@@ -32,26 +42,26 @@ export default function AcercaDe() {
     const objetivos = [
         {
             icon: <ListAlt sx={{ fontSize: "4rem" }} />,
-            title: 'Registrar las trayectorias educativas',
-            text: 'El SIIE tiene como objetivo registrar las trayectorias educativas de los ciudadanos a lo largo de la vida, crear la base de centros educativos, asociaciones de padres de familia, centros de formación técnica y benefactores, así como de los docentes e instructores certificados.'
+            title: "Registrar las trayectorias educativas",
+            text: "El SIIE tiene como objetivo registrar las trayectorias educativas de los ciudadanos a lo largo de la vida, crear la base de centros educativos, asociaciones de padres de familia, centros de formación técnica y benefactores, así como de los docentes e instructores certificados.",
         },
 
         {
             icon: <PieChart sx={{ fontSize: "4rem" }} />,
-            title: 'Generar información estratégica',
-            text: 'El SIIE busca generar información confiable y oportuna que permita una toma de decisiones informada para formular nuevas políticas educativas y diseñar estrategias orientadas a una educación inclusiva y de calidad basada en evidencias.'
+            title: "Generar información estratégica",
+            text: "El SIIE busca generar información confiable y oportuna que permita una toma de decisiones informada para formular nuevas políticas educativas y diseñar estrategias orientadas a una educación inclusiva y de calidad basada en evidencias.",
         },
 
         {
             icon: <Search sx={{ fontSize: "4rem" }} />,
-            title: 'Brindar mayor transparencia',
-            text: 'A través de la implementación de un portal de datos abiertos para Educación, que responda a criterios de confianza requeridos por el Open Data Institute.'
+            title: "Brindar mayor transparencia",
+            text: "A través de la implementación de un portal de datos abiertos para Educación, que responda a criterios de confianza requeridos por el Open Data Institute.",
         },
         {
             icon: <Storage sx={{ fontSize: "4rem" }} />,
-            title: 'Almacenar información para indicadores',
-            text: 'Incluye información pertinente y necesaria para el cálculo de indicadores nacionales e internacionales de Educación a los cuales Honduras responde.'
-        }
+            title: "Almacenar información para indicadores",
+            text: "Incluye información pertinente y necesaria para el cálculo de indicadores nacionales e internacionales de Educación a los cuales Honduras responde.",
+        },
     ];
     return (
         <Container maxWidth="lg" sx={{ py: 5 }}>
@@ -116,16 +126,15 @@ export default function AcercaDe() {
                             >
                                 <Box
                                     sx={{
-
-
                                         borderRadius: 1,
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "center",
-                                        minWidth: 80
+                                        minWidth: 80,
                                     }}
-                                >  {obj.icon}
-
+                                >
+                                    {" "}
+                                    {obj.icon}
                                 </Box>
                                 <Box sx={{ ml: 3 }}>
                                     <Typography variant="h6" sx={{ fontWeight: "bold" }}>
@@ -139,75 +148,109 @@ export default function AcercaDe() {
                 </Grid>
             </Grid>
             {/* Colaboradores */}
-            <Grid
-                container
-                spacing={2}
-           
-               mt={4}
-            >
-                <Grid item size={{ xs: 12, md: 12 }}>
-                    <Typography
-                        variant="h5"
-                        gutterBottom
-                        fontWeight="bold"
-            
-                    >
+            <Grid container spacing={2} mt={4}>
+                {/* Título */}
+                <Grid item size={{ xs: 12 }}>
+                    <Typography variant="h5" gutterBottom fontWeight="bold">
                         Colaboradores
                     </Typography>
-
                 </Grid>
-                <Grid item size={{ xs: 12, md: 3 }}>
-                    <Typography variant="body2" color="text.secondary" marginLeft={5}>
-                        <ul style={{ listStyle: "none", padding: 15 }}>
+
+                {!isMobile ? (
+                    <>
+                        {/* --- ESCRITORIO --- Lista a la izquierda --- */}
+                        <Grid item size={{ xs: 12, md: 3 }}>
+                            <Typography variant="body2" color="text.secondary" marginLeft={5}>
+                                <ul style={{ listStyle: "none", padding: 15 }}>
+                                    {instituciones.map((inst) => (
+                                        <li
+                                            key={inst.name}
+                                            onMouseEnter={() => setHovered(inst.name)}
+                                            onMouseLeave={() => setHovered(null)}
+                                            style={{
+                                                marginBottom: 8,
+                                                cursor: "pointer",
+                                                fontWeight: hovered === inst.name ? "bold" : "normal",
+                                                color: hovered === inst.name ? "#88CFE0" : "inherit",
+                                            }}
+                                        >
+                                            {inst.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Typography>
+                        </Grid>
+
+                        {/* Logos a la derecha */}
+                        <Grid container item size={{ xs: 12, md: 9 }} spacing={2}>
                             {instituciones.map((inst) => (
-                                <li
+                                <Grid
+                                    item
+                                    size={{ xs: 12, sm: 6, md: 4 }}
                                     key={inst.name}
-                                    onMouseEnter={() => setHovered(inst.name)}
-                                    onMouseLeave={() => setHovered(null)}
-                                    style={{
-                                        marginBottom: 8,
-                                        cursor: "pointer",
+                                    sx={{ textAlign: "center" }}
+                                >
+                                    <CardMedia
+                                        component="img"
+                                        src={inst.logo}
+                                        alt={inst.name}
+                                        sx={{
+                                            width: hovered === inst.name ? 240 : 200,
+                                            height: 120,
+                                            borderRadius: 2,
+                                            objectFit: "contain",
+                                            transition: "all 0.3s ease",
+                                            mx: "auto",
+                                        }}
+                                    />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </>
+                ) : (
+                    <>
+                        {/* --- MÓVIL --- Nombre y logo juntos --- */}
+                        {instituciones.map((inst) => (
+                            <Grid
+                                item
+                                size={{ xs: 12 }}
+                                key={inst.name}
+                                sx={{ textAlign: "center" }}
+                                onMouseEnter={() => setHovered(inst.name)}
+                                onMouseLeave={() => setHovered(null)}
+                            >
+                                <Typography
+                                    variant="body2"
+                                    sx={{
+                                        mt: 2,
+                                        mb: 1,
                                         fontWeight: hovered === inst.name ? "bold" : "normal",
                                         color: hovered === inst.name ? "#88CFE0" : "inherit",
                                     }}
                                 >
                                     {inst.name}
-                                </li>
-                            ))}
-                        </ul>
-                    </Typography>
+                                </Typography>
+                                <CardMedia
+                                    component="img"
+                                    src={inst.logo}
+                                    alt={inst.name}
+                                    sx={{
+                                        width: hovered === inst.name ? 240 : 200,
+                                        height: 120,
+                                        borderRadius: 2,
+                                        objectFit: "contain",
+                                        transition: "all 0.3s ease",
+                                        mx: "auto",
+                                    }}
+                                />
+                            </Grid>
+                        ))}
+                    </>
+                )}
 
-                </Grid>
-
-                {/* Logo */}
-                <Grid
-                    item
-                    size={{ xs: 12, md: 9 }}
-                    sx={{ display: "flex", justifyContent: "center", gap: 5 }}
-                >
-                    {instituciones.map((inst) => (
-                        <CardMedia
-                            key={inst.name}
-                            component="img"
-                            src={inst.logo}
-                            alt={inst.name}
-                            sx={{
-                                width: hovered === inst.name ? 240 : 200,
-                                height: 120,
-                                borderRadius: 2,
-                                objectFit: "contain",
-                                transition: "all 0.3s ease",
-                            }}
-                        />
-                    ))}
-                </Grid>
-
-                <Grid item size={{ xs: 12, md: 12 }} marginTop={2} padding={2}>
-                    <Typography
-                        variant="body2"
-                        gutterBottom
-                        align="justify"
-                    >
+                {/* Texto inferior */}
+                <Grid item size={{ xs: 12 }} mt={2} p={2}>
+                    <Typography variant="body2" gutterBottom align="justify">
                         El SIIE estará integrado con otros sistemas, con el fin de
                         consolidar la información relativa a centros educativos, oferta
                         educativa, participantes, docentes (instructores y facilitadores),
@@ -215,28 +258,29 @@ export default function AcercaDe() {
                         <br />
                         <br />
                         El SIIE se vinculará con los sistemas de información de la
-                        Secretaría de Educación (SEDUC), la Dirección de Educación Superior
+                        Secretaría de Educación (SEDUCA), la Dirección de Educación Superior
                         (DES-UNAH), el Instituto Nacional de Formación Profesional (INFOP) y
                         la Comisión para el Desarrollo de la Educación Alternativa No Formal
                         (CONEANFO), permitiendo el aprendizaje colaborativo mediante la
                         constitución de fichas estandarizadas de información que permitirán
                         generar indicadores e información.
-
-
-
                     </Typography>
                 </Grid>
             </Grid>
 
             {/* Institución */}
-            <Grid container spacing={2} alignItems="center" sx={{ backgroundColor: "#f5f5f5", }}>
+            <Grid
+                container
+                spacing={2}
+                alignItems="center"
+                sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }}
+            >
                 <Grid item size={{ xs: 12, md: 6 }}>
                     <CardMedia
                         component="img"
                         image={conedLogo}
                         alt="Logo institución"
                         sx={{
-                            borderRadius: 2,
                             maxWidth: 530,
                             margin: "auto",
                             transition: "transform 0.3s ease",
@@ -268,9 +312,14 @@ export default function AcercaDe() {
                         <Typography variant="body2" color="text.primary" marginLeft={1}>
                             Nombre: Jose Alexis Ordoñes Velasquez <br />
                             Contacto:{" "}
-                            <a href="mailto:alexis.ordoñez@coend.gob.hn">
+                            <Link
+                                href="mailto:alexis.ordoñez@coend.gob.hn"
+                                underline="none"
+                                sx={{ color: "#88CFE0", fontWeight: "bold" }}
+                            >
                                 alexis.ordoñez@coend.gob.hn
-                            </a>
+                            </Link>
+
                         </Typography>
                     </CardContent>
                 </Grid>
@@ -280,7 +329,7 @@ export default function AcercaDe() {
             <Grid
                 container
                 spacing={4}
-                sx={{ marginTop: 3, backgroundColor: "#f5f5f5", padding: 2 }}
+                sx={{ marginTop: 3, backgroundColor: "#f5f5f5", padding: 2, borderRadius: 2 }}
             >
                 <Grid item size={{ xs: 12, md: 3 }}>
                     <Typography variant="h6" gutterBottom fontWeight="bold">
@@ -288,8 +337,15 @@ export default function AcercaDe() {
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         Nombre: Rubén Isaac Fú Flores <br />
-                        Contacto:
-                        <a href="mailto:ruben.fu@coend.gob.hn">ruben.fu@coend.gob.hn</a>
+                        Contacto: {" "}
+                        <Link
+                            href="mailto:ruben.fu@coend.gob.hn"
+                            underline="none"
+                            sx={{ color: "#88CFE0", fontWeight: "bold" }}
+                        >
+                            ruben.fu@coend.gob.hn
+                        </Link>
+
                     </Typography>
                 </Grid>
 
@@ -301,10 +357,14 @@ export default function AcercaDe() {
                         Nombre: Abel Mauricio Cerrato Anchecta
                         <br />
                         Contacto:{" "}
-                        <a href="mailto:abel.cerrato@coend.gob.hn">
-                            {" "}
+
+                        <Link
+                            href="mailto:abel.cerrato@coend.gob.hn"
+                            underline="none"
+                            sx={{ color: "#88CFE0", fontWeight: "bold" }}
+                        >
                             abel.cerrato@coend.gob.hn
-                        </a>
+                        </Link>
                     </Typography>
                 </Grid>
                 <Grid item size={{ xs: 12, md: 5.5 }}>
@@ -317,28 +377,38 @@ export default function AcercaDe() {
                         Desarrolladores
                     </Typography>
                     <Grid container spacing={2}>
-                        <Grid item size={{ xs: 12, md: 6 }}>
+                        <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
                             <Typography variant="body2" color="text.secondary">
                                 Nombre: Seydi Johana Lara Fuentes
                                 <br />
                                 Puesto: Desarrolladora BackEnd
                                 <br />
                                 Contacto:{" "}
-                                <a href="www.linkedin.com/in/seydi-johana-lara-fuentes-35b08a2a4">
+
+                                <Link
+                                    href="https://www.linkedin.com/in/seydi-johana-lara-fuentes-35b08a2a4"
+                                    //underline="none"
+                                    sx={{ color: "#88CFE0", fontWeight: "bold" }}
+                                >
                                     LinkedIn
-                                </a>
+                                </Link>
                             </Typography>
                         </Grid>
-                        <Grid item size={{ xs: 12, md: 6 }}>
+                        <Grid item size={{ xs: 12, sm: 6, md: 6 }}>
                             <Typography variant="body2" color="text.secondary">
                                 Nombre: Luesbelin Julieth Mejia
                                 <br />
                                 Puesto: Desarrolladora FrontEnd
                                 <br />
-                                Contacto:
-                                <a href="www.linkedin.com/in/seydi-johana-lara-fuentes-35b08a2a4">
+                                Contacto:{" "}
+                                <Link
+                                    href="https://www.linkedin.com/in/luesbelin-mejia-154546279"
+                                    //underline="none"
+                                    sx={{ color: "#88CFE0", fontWeight: "bold" }}
+                                >
                                     LinkedIn
-                                </a>
+                                </Link>
+
                             </Typography>
                         </Grid>
                     </Grid>
