@@ -100,7 +100,7 @@ export default function AcercaDe() {
     ];
 
     const trasporte = [
-        { nombre: "Edwin Ramos" },
+        { nombre: "Edwin David Ramos Bustillo" },
         { nombre: "Jhimy Xavier Valladares" },
     ];
     return (
