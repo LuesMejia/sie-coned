@@ -409,7 +409,7 @@ export default function AcercaDe() {
                                 </Grid>
                                 <Divider sx={{ my: 2 }} />
                                 <Typography variant="h6" gutterBottom fontWeight="bold" align="center" sx={{ mt: 2 }}>
-                                  Trasporte
+                                  Transporte
                                 </Typography>
                                 <Grid container spacing={2}>
                                     {trasporte.map((miembro, index) => (
