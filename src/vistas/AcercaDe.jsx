@@ -9,7 +9,16 @@ import {
     Divider,
     Box,
     Paper,
-    Link
+    Link,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
+    List,
+    ListItem,
+    ListItemText,
+    IconButton
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTheme, useMediaQuery } from "@mui/material";
@@ -27,8 +36,9 @@ import {
     Computer,
     Search,
     Storage,
+    Close
 } from "@mui/icons-material";
-
+import CloseIcon from '@mui/icons-material/Close';
 export default function AcercaDe() {
     const [hovered, setHovered] = useState(null);
     const theme = useTheme();
@@ -62,6 +72,36 @@ export default function AcercaDe() {
             title: "Almacenar información para indicadores",
             text: "Incluye información pertinente y necesaria para el cálculo de indicadores nacionales e internacionales de Educación a los cuales Honduras responde.",
         },
+    ];
+
+    const [open, setOpen] = useState(false);
+
+    // Ejemplo de datos para los miembros del consejo
+    const miembros = [
+        { nombre: "Jose Alexis Ordoñes Velasquez ", puesto: " Secretario Ejecutivo" },
+        { nombre: "Beatriz Victoria Galeano Escobar", puesto: "Asistente Ejecutiva" },
+        { nombre: "Zorayda Waleska Zelaya Acosta", puesto: "Coordinadora de Telecomunicaciones" },
+        { nombre: "Tomas Santiago Cayetano Arzu", puesto: "Diseñador Gráfico" },
+        { nombre: "Karen Noelia Elvir Rodriguez", puesto: "Coordinadora de UPEG" },
+        { nombre: "Zoila Suyapa Padilla Sabillon", puesto: "Cordinadora de Desarrollo Profesional Docente" },
+        { nombre: "Melany Lizzeth Ordoñez Cruz", puesto: "Asistente Técnico de Desarrollo Profesional Docente" },
+        { nombre: "Abel Mauricio Cerrato Anchecta", puesto: "Asistente del SIIE" },
+        { nombre: "Karla Paola Cartagena Lagos", puesto: "Asistente de EFTP" },
+        { nombre: "Mare Yescenia Figueroa Aguiriano", puesto: "Asistente Técnica de la UTC" },
+        { nombre: "José Donaldo Ochoa Herrera", puesto: "Coordinador de FTP" },
+        { nombre: "Luis Armando Ortiz Laines", puesto: "Asesor Legal" },
+        { nombre: "Conrado Ernesto Fuentes Carranza", puesto: "Cordinador de Gestión de la Información" },
+        { nombre: "Roberto Briceño Jimenez", puesto: "Cordinador del Modelo Ejecutivo" },
+        { nombre: "Digna Carelia Murillo Escobar", puesto: "Administradora" },
+        { nombre: "Giuver Andony Padilla Santos", puesto: "Asistente de Administración" },
+        { nombre: "Seydi Johana Lara Fuentes", puesto: "Desarrolladora BackEnd" },
+        { nombre: "Luesbelin Julieth Mejia Garcia", puesto: "Desarrolladora FrontEnd" },
+        { nombre: "Heydy Carolina Elvir Gutierrez", puesto: "Asistente de Servicios Generales" },
+    ];
+
+    const trasporte = [
+        { nombre: "Edwin Ramos" },
+        { nombre: "Jhimy Xavier Valladares" },
     ];
     return (
         <Container maxWidth="lg" sx={{ py: 5 }}>
@@ -319,8 +359,77 @@ export default function AcercaDe() {
                             >
                                 alexis.ordoñez@coend.gob.hn
                             </Link>
-
                         </Typography>
+                        <br />
+                        <Typography variant="h6" gutterBottom fontWeight="bold">
+                            Miembros del Consejo
+                            <Typography
+                                variant="body2"
+                                gutterBottom
+                                fontWeight="bold"
+                                sx={{ cursor: "pointer", color: "#88CFE0", marginLeft: 1 }}
+                                onClick={() => setOpen(true)}
+                            >
+                                Ver listado completo
+                            </Typography>
+                        </Typography>
+
+
+                        {/* Modal con listado */}
+                        <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="sm">
+                            <DialogTitle>
+                                <Grid container spacing={2} >
+                                    <Grid item variant="h3" container fontWeight="bold" alignItems="center" size={{ xs: 11, md: 11 }} >
+                                        Miembros del Consejo Nacional de Educación
+                                    </Grid>
+                                    <Grid item size={{ xs: 1, md: 1 }} container justifyContent="flex-end">
+
+                                        <IconButton onClick={() => setOpen(false)} aria-label="Cerrar" size="large" color="error">
+                                            <Close />
+                                        </IconButton>
+                                    </Grid>
+
+                                </Grid>
+                            </DialogTitle>
+                            <DialogContent dividers>
+                                <Grid container spacing={2}>
+                                    {miembros.map((miembro, index) => (
+                                        <React.Fragment key={index}>
+                                            <Grid item size={{ xs: 12, md: 6 }}>
+                                                <Typography variant="body1" >
+                                                    {miembro.nombre}{/*•  DB473C*/}
+                                                </Typography>
+
+                                                <Typography variant="body2" color="#88CFE0">
+                                                    {miembro.puesto}
+                                                </Typography>
+                                            </Grid>
+                                        </React.Fragment>
+                                    ))}
+                                </Grid>
+                                <Divider sx={{ my: 2 }} />
+                                <Typography variant="h6" gutterBottom fontWeight="bold" align="center" sx={{ mt: 2 }}>
+                                  Trasporte
+                                </Typography>
+                                <Grid container spacing={2}>
+                                    {trasporte.map((miembro, index) => (
+                                        <React.Fragment key={index}>
+                                            <Grid item size={{ xs: 12, md: 6 }}>
+                                                <Typography variant="body1" >
+                                                    {miembro.nombre}{/*•  DB473C*/}
+                                                </Typography>
+
+                                                <Typography variant="body2" color="#88CFE0">
+                                                    {miembro.puesto}
+                                                </Typography>
+                                            </Grid>
+                                        </React.Fragment>
+                                    ))}
+                                </Grid>
+                            </DialogContent>
+
+                        </Dialog>
+
                     </CardContent>
                 </Grid>
             </Grid>
@@ -351,7 +460,7 @@ export default function AcercaDe() {
 
                 <Grid item size={{ xs: 12, md: 3.5 }}>
                     <Typography variant="h6" gutterBottom fontWeight="bold">
-                        Asesor del Proyecto
+                        Sub Coordinador del Proyecto
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         Nombre: Abel Mauricio Cerrato Anchecta
