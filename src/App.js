@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import INFOPTABLERO from "./vistas/INFOP";
 import SEDUC from "./vistas/SEDUC";
 import AcercaDe from "./vistas/AcercaDe";
+import CONEANFOTABLERO from "./vistas/CONEANFO";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/ACERCA-DE" element={<AcercaDe />} />
         <Route path="/SEDUC" element={<SEDUC />} />
         <Route path="/INFOP" element={<INFOPTABLERO />} />
+        <Route path="/CONEANFO" element={<CONEANFOTABLERO />} />
       </Routes>
       <Footer />
     </div>
