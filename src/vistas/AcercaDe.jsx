@@ -353,11 +353,11 @@ export default function AcercaDe() {
                             Nombre: Jose Alexis Ordoñes Velasquez <br />
                             Contacto:{" "}
                             <Link
-                                href="mailto:alexis.ordoñez@coend.gob.hn"
+                                href="mailto:alexis.ordoñez@coned.gob.hn"
                                 underline="none"
                                 sx={{ color: "#88CFE0", fontWeight: "bold" }}
                             >
-                                alexis.ordoñez@coend.gob.hn
+                                alexis.ordoñez@coned.gob.hn
                             </Link>
                         </Typography>
                         <br />
@@ -409,7 +409,7 @@ export default function AcercaDe() {
                                 </Grid>
                                 <Divider sx={{ my: 2 }} />
                                 <Typography variant="h6" gutterBottom fontWeight="bold" align="center" sx={{ mt: 2 }}>
-                                  Transporte
+                                    Transporte
                                 </Typography>
                                 <Grid container spacing={2}>
                                     {trasporte.map((miembro, index) => (
@@ -448,11 +448,11 @@ export default function AcercaDe() {
                         Nombre: Rubén Isaac Fú Flores <br />
                         Contacto: {" "}
                         <Link
-                            href="mailto:ruben.fu@coend.gob.hn"
+                            href="mailto:ruben.fu@coned.gob.hn"
                             underline="none"
                             sx={{ color: "#88CFE0", fontWeight: "bold" }}
                         >
-                            ruben.fu@coend.gob.hn
+                            ruben.fu@coned.gob.hn
                         </Link>
 
                     </Typography>
@@ -468,11 +468,11 @@ export default function AcercaDe() {
                         Contacto:{" "}
 
                         <Link
-                            href="mailto:abel.cerrato@coend.gob.hn"
+                            href="mailto:abel.cerrato@coned.gob.hn"
                             underline="none"
                             sx={{ color: "#88CFE0", fontWeight: "bold" }}
                         >
-                            abel.cerrato@coend.gob.hn
+                            abel.cerrato@coned.gob.hn
                         </Link>
                     </Typography>
                 </Grid>
